@@ -1396,7 +1396,7 @@ body.zap{animation:zap .6s steps(2) 1}
     mb.textContent=state.expanded?'Show fewer ideas':'Show all ideas';
     mb.setAttribute('aria-expanded',state.expanded);
     el.innerHTML=shown.map(function(p,i){
-      var links=p[4].map(function(l){return '<a href="'+esc(l[1])+'" target="_blank" rel="noopener">'+esc(l[0])+'</a>'}).join(' &nbsp;/&nbsp; ');
+      var links=p[4].map(function(l){return '<a href="'+esc(l[1])+'">'+esc(l[0])+'</a>'}).join(' &nbsp;/&nbsp; ');
       return '<details class="proj"><summary><span class="no">'+String(i+1).padStart(2,'0')+'</span><span class="nm">'+esc(p[1])+'</span><span class="sc">'+esc(p[3])+'</span><span class="lv '+p[2]+'">'+lvLabel[p[2]]+'</span><span class="pl">+</span></summary><div class="more"><div class="cat">'+esc(CATN[p[0]])+'</div><div><b>Scrap to use:</b> '+esc(p[3])+'</div>'+(p[5]?'<div class="note">'+esc(p[5])+'</div>':'')+'<div><b>Guides:</b> '+links+'</div></div></details>';
     }).join('');
     el.classList.toggle('exp',!!(state.expanded&&over));el.scrollTop=0;sizeList();
@@ -1419,7 +1419,7 @@ body.zap{animation:zap .6s steps(2) 1}
       else{
         spinning=false;btn.classList.remove('go');
         var l=pick[4][0];
-        res.innerHTML='Scrap to use: '+esc(pick[3])+'. <b>'+lvLabel[pick[2]]+'.</b> <a href="'+esc(l[1])+'" target="_blank" rel="noopener">'+esc(l[0])+'</a>';
+        res.innerHTML='Scrap to use: '+esc(pick[3])+'. <b>'+lvLabel[pick[2]]+'.</b> <a href="'+esc(l[1])+'">'+esc(l[0])+'</a>';
       }
     })();
   });
