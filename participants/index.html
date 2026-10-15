@@ -936,6 +936,7 @@ body.zap{animation:zap .6s steps(2) 1}
  #testing .carry{margin-top:26px!important}
  #campus{padding:56px 0!important}
 }
+@media (max-width:600px){.cta,.top .apply{white-space:nowrap;font-size:11px;padding:7px 10px}}
 </style>
 
 <template id="tpl-tosta">
@@ -1000,7 +1001,7 @@ body.zap{animation:zap .6s steps(2) 1}
     <a class="logo" href="../index.html"><span><b>Tinker</b>Hub</span><em>SCRAP HACK</em></a>
     <nav aria-label="Pages">
       <a href="../index.html">Home</a><a href="#top" style="color:var(--yellow)">Participants' note</a><a href="../index.html#faq">FAQ</a><a href="../organiser/index.html">Organiser's note</a>
-      <a class="cta" href="#apply">Apply now</a>
+      <a class="cta" href="#apply">Sourcing ongoing</a>
     </nav>
   </div>
 </header>
@@ -1053,8 +1054,8 @@ body.zap{animation:zap .6s steps(2) 1}
       <article class="sess mand">
         <span class="badge">Mandatory</span>
         <h3>Safety orientation</h3>
-        <span class="when">Date TBC</span>
-        <p>Attend before you open anything. It covers what is safe to dismantle and how.</p>
+        <span class="when">Done</span>
+        <p>Completed. Keep it in mind before you open anything. It covered what is safe to dismantle and how.</p>
         <ul><li>Devices that should never be opened</li><li>Risks from capacitors, batteries and damaged wiring</li><li>Basic tool handling and safe testing</li><li>Disposing of unsafe parts properly</li></ul>
       </article>
       <article class="sess">
@@ -1198,11 +1199,11 @@ body.zap{animation:zap .6s steps(2) 1}
 
 <section class="endcta" id="apply">
   <div class="wrap">
-    <p class="eyebrow"><span>Ready?</span></p>
-    <h2>Pick your venue. Get in.</h2>
+    <p class="eyebrow"><span>Sourcing ongoing</span></p>
+    <h2>Registrations are closed.</h2>
     <div class="vns">
-      <a class="vn k" href="https://tinkerhub.org/events/AQDEHCSTZE/Scrap%20Hack%20-%20Kochi" target="_blank" rel="noopener"><span class="peek slot bob" data-char="tosta" aria-hidden="true"></span><span class="vc">Kochi</span><span class="vt">Oct 24, 2:00 PM<br>to Oct 25, 10:00 AM</span><span class="va">Apply for Kochi <i>&rarr;</i></span></a>
-      <a class="vn c" href="https://tinkerhub.org/events/8KQT30FXXC/Scrap%20Hack%20-%20Calicut" target="_blank" rel="noopener"><span class="peek slot bob b2" data-char="fanny" aria-hidden="true"></span><span class="vc">Calicut</span><span class="vt">Oct 24, 6:00 PM<br>to Oct 25, 6:00 AM</span><span class="va">Apply for Calicut <i>&rarr;</i></span></a>
+      <a class="vn k" href="https://tinkerhub.org/events/AQDEHCSTZE/Scrap%20Hack%20-%20Kochi" target="_blank" rel="noopener"><span class="peek slot bob" data-char="tosta" aria-hidden="true"></span><span class="vc">Kochi</span><span class="vt">Oct 24, 2:00 PM<br>to Oct 25, 10:00 AM</span><span class="va">Kochi event page <i>&rarr;</i></span></a>
+      <a class="vn c" href="https://tinkerhub.org/events/8KQT30FXXC/Scrap%20Hack%20-%20Calicut" target="_blank" rel="noopener"><span class="peek slot bob b2" data-char="fanny" aria-hidden="true"></span><span class="vc">Calicut</span><span class="vt">Oct 24, 6:00 PM<br>to Oct 25, 6:00 AM</span><span class="va">Calicut event page <i>&rarr;</i></span></a>
     </div>
   </div>
   <div class="mq" aria-hidden="true"><div class="mqi"><span>Motors &middot; Gears &middot; Wires &middot; Switches &middot; Speakers &middot; Fans &middot; Magnets &middot; Knobs &middot; Springs &middot; Batteries &middot; Motors &middot; Gears &middot; Wires &middot; Switches &middot; Speakers &middot; Fans &middot; Magnets &middot; Knobs &middot; Springs &middot; Batteries &middot; </span><span>Motors &middot; Gears &middot; Wires &middot; Switches &middot; Speakers &middot; Fans &middot; Magnets &middot; Knobs &middot; Springs &middot; Batteries &middot; Motors &middot; Gears &middot; Wires &middot; Switches &middot; Speakers &middot; Fans &middot; Magnets &middot; Knobs &middot; Springs &middot; Batteries &middot; </span></div></div>
@@ -1275,8 +1276,8 @@ body.zap{animation:zap .6s steps(2) 1}
   var T1=[
     [dt(10,10),dt(10,10,23),'Oct 10','Sat','Registrations open','Form goes live. Spread the word.'],
     [dt(10,13),dt(10,13,23),'Oct 13','Tue','Registration closes','Last day to apply.'],
-    [null,null,'TBC','','Team announcements','We share your team details.'],
-    [null,null,'TBC','','Pre-event sessions','Safety orientation (mandatory), then three hardware sessions.'],
+    ['done',null,'Done','','Team announcements','Teams are out and have their WhatsApp groups.'],
+    [null,null,'TBC','','Pre-event sessions','Safety orientation is done. Three hardware sessions to go.'],
     [null,null,'TBC','','Source, test, film','Find scrap, test your parts and film your Scrap Diary.'],
     [null,null,'TBC','','Inventory checkpoint','Share your parts list and a rough idea.']
   ];
@@ -1288,6 +1289,7 @@ body.zap{animation:zap .6s steps(2) 1}
   function renderTL(id,list){
     var ol=document.getElementById(id),html='';
     list.forEach(function(it){
+      if(it[0]==='done'){html+='<li class="done"><div class="d">'+it[2]+'</div><h4>'+esc(it[4])+'</h4><p>'+esc(it[5])+'</p></li>';return}
       if(it[0]===null){html+='<li class="tbc"><div class="d">'+it[2]+'</div><h4>'+esc(it[4])+'</h4><p>'+esc(it[5])+'</p></li>';return}
       var st=istNow()>it[1]?'done':(istNow()>=it[0]?'now':'');
       if(!nowMarked && st!=='done'){st='now';nowMarked=true}
