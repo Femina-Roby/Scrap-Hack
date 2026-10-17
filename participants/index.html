@@ -937,6 +937,41 @@ body.zap{animation:zap .6s steps(2) 1}
  #campus{padding:56px 0!important}
 }
 @media (max-width:600px){.cta,.top .apply{white-space:nowrap;font-size:11px;padding:7px 10px}}
+
+/* ---------- phones: menu, tap targets, inline details ---------- */
+.lk{display:contents}
+.mtog,.mcta{display:none}
+.logo em{white-space:nowrap}
+@media (max-width:900px){
+  .hbar nav{gap:10px}
+  .mtog{display:grid;place-content:center;gap:5px;width:44px;height:44px;margin-right:-10px;padding:0;background:none;border:0;border-radius:8px;cursor:pointer;color:#f3ead6}
+  .mtog i{display:block;width:22px;height:2px;background:currentColor;border-radius:2px;transition:transform .2s,opacity .2s}
+  .hbar.open .mtog i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .hbar.open .mtog i:nth-child(2){opacity:0}
+  .hbar.open .mtog i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .lk{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;max-height:calc(100svh - 60px);overflow-y:auto;background:#14100c;border-bottom:1px solid rgba(255,255,255,.1);padding:4px 20px 20px;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+  .hbar.open .lk{display:flex}
+  .hbar nav .lk a{display:block;padding:13px 0;border-bottom:1px solid var(--line);font-family:var(--display);font-weight:700;font-variation-settings:"wdth" 85,"opsz" 40;font-size:22px;line-height:1.2;color:#f3ead6}
+  .hbar nav .lk a.mcta{display:none}
+}
+@media (max-width:600px){
+  .hbar nav>.cta{display:none}
+  .hbar nav .lk a.mcta{display:block;margin-top:16px;border:0;border-radius:10px;background:var(--yellow);color:var(--ink);text-align:center;font-family:var(--sans);font-size:16px;font-weight:600;padding:13px}
+}
+@media (max-width:899px){
+  .pt-sec>.wrap>h2,.pt-sec>.wrap>.eyebrow{padding-right:78px}
+  .devl{gap:0}
+  .devl button{padding:7px 0;font-size:24px}
+  .devl button[aria-selected="true"]{transform:translateX(26px)}
+  .devl .devd{margin:6px 0 18px 26px;padding:14px 0 4px;border-top:1px solid rgba(20,16,12,.28)}
+  .devl .devd .dp{min-height:0;font-size:18px}
+  #projects .ctrl{gap:0 18px}
+  #projects .pill{padding:10px 0;font-size:15px}
+  .vtabs{gap:0 22px}
+  .vtabs button{padding:12px 0 8px}
+  .subnav a{padding:16px 12px 14px}
+  footer .fbar nav a{display:inline-block;padding:10px 0}
+}
 </style>
 
 <template id="tpl-tosta">
@@ -1000,8 +1035,9 @@ body.zap{animation:zap .6s steps(2) 1}
   <div class="in">
     <a class="logo" href="../index.html"><span><b>Tinker</b>Hub</span><em>SCRAP HACK</em></a>
     <nav aria-label="Pages">
-      <a href="../index.html">Home</a><a href="#top" style="color:var(--yellow)">Participants' note</a><a href="../index.html#faq">FAQ</a><a href="../organiser/index.html">Organiser's note</a>
+      <span class="lk" id="navlk"><a href="../index.html">Home</a><a href="#top" style="color:var(--yellow)">Participants' note</a><a href="../index.html#faq">FAQ</a><a href="../organiser/index.html">Organiser's note</a><a class="mcta" href="#apply">Sourcing ongoing</a></span>
       <a class="cta" href="#apply">Sourcing ongoing</a>
+      <button class="mtog" type="button" aria-expanded="false" aria-controls="navlk" aria-label="Menu"><i></i><i></i><i></i></button>
     </nav>
   </div>
 </header>
@@ -1476,11 +1512,17 @@ body.zap{animation:zap .6s steps(2) 1}
   var D=[["Inkjet printers", "Stepper and DC motors, gears, metal rods and rails, limit switches.", "Skip laser printers. Toner is messy and the fuser stays hot."], ["DVD and CD drives", "A stepper motor with a lead screw (a ready-made linear slide), a tray motor, tiny switches.", "Never look into the laser. Leave the laser unit alone."], ["PC and laptop fans", "12V brushless fans and motors, ready to spin from a battery pack.", "Open the case, not the power supply. Its capacitors hold charge."], ["Dead hard disks", "Very strong magnets and a smooth spindle motor.", "Magnets pinch skin and wipe phones. Keep them apart."], ["RC cars and toys", "Geared DC motors, wheels, speakers, switches, small boards.", "Take the batteries out first and bag them separately."], ["Radios and old speakers", "Speakers, knobs, pots, switches, telescopic antennas.", "Battery-powered ones only. Mains radios are not for beginners."], ["Keyboards, mice, remotes", "Switches, buttons, IR LEDs, encoder wheels, lots of wire.", "Nothing risky. A good first teardown."]],l=document.getElementById('devl');if(!l)return;
   var pull=document.getElementById('dpull'),care=document.getElementById('dcare');
   l.innerHTML=D.map(function(d,i){return '<li><button type="button" data-i="'+i+'" aria-selected="'+(i===0)+'">'+d[0]+'</button></li>'}).join('');
-  function pick(i){[].forEach.call(l.querySelectorAll('button'),function(b){b.setAttribute('aria-selected',+b.dataset.i===i)});pull.textContent=D[i][1];care.textContent=D[i][2]}
+  var dd=pull.parentNode,home=dd.parentNode,mq=window.matchMedia('(max-width:899px)'),cur=0;
+  /* phones: the details open right under the picked device */
+  function place(i,y){var b=l.querySelector('button[data-i="'+i+'"]');if(y==null)y=b.getBoundingClientRect().top;
+    if(mq.matches){if(dd.parentNode!==b.parentNode)b.parentNode.appendChild(dd)}else if(dd.parentNode!==home)home.appendChild(dd);
+    var d=b.getBoundingClientRect().top-y;if(d)window.scrollBy({top:d,behavior:'instant'})}
+  function pick(i){if(i===cur&&dd.parentNode!==home&&mq.matches)return;var y=l.querySelector('button[data-i="'+i+'"]').getBoundingClientRect().top;cur=i;[].forEach.call(l.querySelectorAll('button'),function(b){b.setAttribute('aria-selected',+b.dataset.i===i)});pull.textContent=D[i][1];care.textContent=D[i][2];place(i,y)}
   l.addEventListener('click',function(e){var b=e.target.closest('button');if(b)pick(+b.dataset.i)});
-  l.addEventListener('mouseover',function(e){var b=e.target.closest('button');if(b)pick(+b.dataset.i)});
+  l.addEventListener('mouseover',function(e){var b=e.target.closest('button');if(b&&!mq.matches)pick(+b.dataset.i)});
   l.addEventListener('focusin',function(e){var b=e.target.closest('button');if(b)pick(+b.dataset.i)});
-  pick(0);
+  if(mq.addEventListener)mq.addEventListener('change',function(){place(cur)});else if(mq.addListener)mq.addListener(function(){place(cur)});
+  cur=-1;pick(0);
 })();
 
 (function(){
@@ -1511,6 +1553,17 @@ body.zap{animation:zap .6s steps(2) 1}
 </script>
 
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)}</script>
+<script>
+(function(){
+ var h=document.querySelector('.hbar'),b=h&&h.querySelector('.mtog');if(!b)return;
+ function set(o){h.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false')}
+ b.addEventListener('click',function(){set(!h.classList.contains('open'))});
+ h.querySelector('.lk').addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
+ document.addEventListener('click',function(e){if(!h.contains(e.target))set(false)});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&h.classList.contains('open')){set(false);b.focus()}});
+ addEventListener('resize',function(){if(innerWidth>900)set(false)});
+})();
+</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script>window.si=window.si||function(){(window.siq=window.siq||[]).push(arguments)}</script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
