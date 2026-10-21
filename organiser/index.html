@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Scrap Hack Organiser's Note</title>
-<meta name="description" content="A note from the team behind Scrap Hack 2026.">
+<meta name="description" content="A note from Femina, who runs Scrap Hack 2026: who she is and why Scrap Hack exists.">
 <meta name="theme-color" content="#14100c">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <meta property="og:title" content="Scrap Hack Organiser's Note">
-<meta property="og:description" content="A note from the team behind Scrap Hack 2026.">
+<meta property="og:description" content="A note from Femina, who runs Scrap Hack 2026: who she is and why Scrap Hack exists.">
 <meta property="og:type" content="website">
 <style>body{margin:0}[hidden]:not([hidden=until-found i]){display:none!important}img{max-width:100%}</style>
 </head>
@@ -20,33 +20,172 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#14100c;--bench:#1a1510;--yellow:#ffe500;--mute:#b8ab92;--line:#3a3025;--display:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;--sans:'Instrument Sans',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;color-scheme:dark}
+:root{--ink:#14100c;--bench:#1a1510;--yellow:#ffe500;--rust:#e2491a;--cream:#fbf0b6;--mute:#b8ab92;--line:#3a3025;--display:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;--sans:'Instrument Sans',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;color-scheme:dark}
 *{box-sizing:border-box}
+html,body{overflow-x:clip}
 body{margin:0;background:var(--bench);color:#f3ead6;font-family:var(--sans);font-size:18px;line-height:1.6;min-height:100vh;min-height:100svh;display:flex;flex-direction:column}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 .top{border-bottom:1px solid rgba(255,255,255,.08)}
 .top .in{max-width:1160px;margin-inline:auto;padding:14px 20px;display:flex;justify-content:space-between;gap:16px;align-items:center;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
-.top a{text-decoration:none;color:#d9cdb4}
+.top a{text-decoration:none;color:#d9cdb4;padding:8px 0}
 .top a:hover{color:var(--yellow)}
-.top .apply{background:var(--yellow);color:var(--ink);padding:6px 12px;border-radius:6px;font-weight:700}
-main{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1160px;width:100%;margin-inline:auto;padding:48px 20px}
+.top .apply{background:var(--yellow);color:var(--ink);padding:8px 12px;border-radius:6px;font-weight:700}
+.top .apply:hover{color:var(--ink)}
+main{flex:1;max-width:1160px;width:100%;margin-inline:auto;padding:56px 20px 72px;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);grid-template-areas:"me hd" "me note";grid-template-rows:auto 1fr;column-gap:clamp(40px,7vw,110px);align-items:start}
+.me{grid-area:me;align-self:start}.hd{grid-area:hd}.note{grid-area:note}
+.note h2:first-child{margin-top:36px}
 .doc{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow);margin:0 0 18px}
-h1{margin:0;font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 75,"opsz" 96;text-transform:uppercase;font-size:clamp(56px,13vw,180px);line-height:.84;letter-spacing:-.015em}
+h1{margin:0;font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 75,"opsz" 96;text-transform:uppercase;font-size:clamp(56px,8vw,120px);line-height:.86;letter-spacing:-.015em}
 h1 .y{color:var(--yellow)}
-p.s{margin:28px 0 0;max-width:30rem;font-size:clamp(17px,1.7vw,21px);color:#e4d8bd}
-p.s a{color:var(--yellow)}
-footer{padding:22px 20px 26px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);max-width:1160px;width:100%;margin-inline:auto}
+h2{margin:52px 0 14px;font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 75,"opsz" 96;text-transform:uppercase;font-size:clamp(30px,3.4vw,44px);line-height:.95;color:var(--yellow)}
+.note p{margin:0 0 18px;max-width:36rem;font-size:clamp(17px,1.4vw,19.5px);color:#e9dfc8}
+.note p.first{margin-top:30px;font-size:clamp(19px,1.7vw,23px);color:#f7efdc}
+.note b{color:#fff6dc}
+.more{max-width:36rem;margin-top:40px;padding:18px 20px;border:1.5px dashed var(--yellow);border-radius:12px;background:rgba(255,229,0,.06);display:grid;gap:4px}
+.more b{font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 75,"opsz" 96;text-transform:uppercase;font-size:clamp(24px,2.4vw,30px);line-height:1;color:var(--yellow)}
+.more b::after{content:"";display:inline-block;width:.5em;height:.12em;margin-left:.15em;background:var(--yellow);animation:blinkc 1s steps(1) infinite}
+@keyframes blinkc{50%{opacity:0}}
+.more span{font-size:16.5px;color:#e9dfc8}
+.back{display:inline-flex;margin-top:34px;background:var(--yellow);color:var(--ink);font-weight:600;font-size:17px;padding:13px 22px;border-radius:12px;border:2px solid var(--ink);text-decoration:none;box-shadow:5px 6px 0 var(--rust);transition:transform .12s,box-shadow .12s}
+.back:hover{transform:translate(2px,3px);box-shadow:2px 3px 0 var(--rust)}
+
+/* drumroll, then the name lands with a highlighter swipe */
+.drum{display:inline-block;font-family:var(--mono);font-size:.8em;letter-spacing:.06em;color:var(--mute);border:1px dashed #6a5a44;border-radius:6px;padding:0 7px;margin-right:2px;white-space:nowrap}
+.in .drum{animation:drum .09s linear 10 alternate}
+@keyframes drum{from{transform:translate(-1.5px,1px) rotate(-2deg)}to{transform:translate(1.5px,-1px) rotate(2deg)}}
+mark.hl{color:var(--ink);font-weight:700;padding:0 4px;border-radius:3px;background:linear-gradient(var(--yellow),var(--yellow)) no-repeat 0 0/0% 100%;transition:background-size .5s cubic-bezier(.3,.7,.2,1) 1s,color .2s 1s}
+mark.hl{color:#f3ead6}
+.in mark.hl{background-size:100% 100%;color:var(--ink)}
+.role{font-family:var(--mono);font-size:.78em;color:var(--mute);white-space:nowrap}
+
+/* "smooth transition" divider */
+.note p.slide{max-width:36rem;display:flex;align-items:center;gap:14px;margin:40px 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.note p.slide::before,.slide::after{content:"";flex:1;border-top:1px dashed #5a4c3a}
+.note p.slide span{display:inline-flex;gap:8px;align-items:center}
+.note p.slide i{font-style:normal;color:var(--yellow);display:inline-block;animation:slide 1.6s ease-in-out infinite}
+@keyframes slide{0%,100%{transform:translateY(-2px)}50%{transform:translateY(4px)}}
+
+/* ---------- the photo: a taped-on polaroid, marked up by hand ---------- */
+.me{position:sticky;top:32px;margin:8px 0 0;padding:0 10px}
+.pol{position:relative;background:#fbf6e6;padding:12px 12px 0;border-radius:4px;box-shadow:0 18px 40px rgba(0,0,0,.45),0 2px 0 rgba(0,0,0,.2);transform:rotate(-3deg);cursor:pointer;animation:drop .8s cubic-bezier(.25,1.4,.45,1) both;-webkit-tap-highlight-color:transparent}
+@keyframes drop{from{opacity:0;transform:translateY(-60px) rotate(-14deg)}to{opacity:1;transform:rotate(-3deg)}}
+.pol.wig{animation:wig .6s ease}
+@keyframes wig{0%{transform:rotate(-3deg)}25%{transform:rotate(2deg) scale(1.02)}55%{transform:rotate(-6deg)}80%{transform:rotate(-1.5deg)}100%{transform:rotate(-3deg)}}
+.tape{position:absolute;left:50%;top:-14px;width:120px;height:30px;margin-left:-60px;background:rgba(255,229,0,.82);transform:rotate(2deg);box-shadow:0 2px 4px rgba(0,0,0,.2);z-index:3}
+.tape::before,.tape::after{content:"";position:absolute;top:0;bottom:0;width:6px;background:repeating-linear-gradient(180deg,transparent 0 4px,rgba(26,21,16,.9) 4px 6px)}
+.tape::before{left:-3px}.tape::after{right:-3px}
+.ph{position:relative;overflow:visible}
+.ph img{display:block;width:100%;height:auto;aspect-ratio:900/1124;border-radius:2px;background:#d8d2c2}
+.mark{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.mark path{fill:none;stroke:var(--rust);stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 1px 0 rgba(255,255,255,.35))}
+.mark .ring{animation:draw .9s cubic-bezier(.5,0,.3,1) .9s forwards}
+.mark .arr{animation:draw .45s ease-out 1.7s forwards}
+.mark .head{animation:draw .2s ease-out 2.1s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.me-tag{position:absolute;right:-2%;top:7%;z-index:4;background:var(--yellow);color:var(--ink);font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 80,"opsz" 48;text-transform:uppercase;font-size:clamp(20px,2.1vw,27px);line-height:1;padding:9px 13px 8px;border-radius:6px;border:2px solid var(--ink);box-shadow:3px 4px 0 var(--ink);transform:rotate(7deg) scale(0);transform-origin:30% 100%;animation:pop .45s cubic-bezier(.3,1.6,.5,1) 2.2s forwards,nod 3.2s ease-in-out 3.2s infinite}
+@keyframes pop{to{transform:rotate(7deg) scale(1)}}
+@keyframes nod{0%,84%,100%{transform:rotate(7deg)}88%{transform:rotate(-2deg) translateY(-3px)}92%{transform:rotate(10deg)}96%{transform:rotate(5deg)}}
+.pol figcaption{font-family:var(--display);font-weight:700;font-variation-settings:"wdth" 85,"opsz" 40;color:var(--ink);font-size:19px;line-height:1.1;padding:12px 4px 14px;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.pol figcaption span{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6b6254;white-space:nowrap}
+.say{position:absolute;left:50%;top:-10px;transform:translate(-50%,-100%);z-index:6;background:var(--cream);color:var(--ink);font:600 15px/1 var(--sans);padding:9px 12px;border-radius:12px;white-space:nowrap;box-shadow:2px 3px 0 rgba(0,0,0,.35);pointer-events:none;animation:say 1.9s ease forwards}
+.say::after{content:"";position:absolute;left:50%;top:100%;margin-left:-6px;border:6px solid transparent;border-top-color:var(--cream)}
+@keyframes say{0%{opacity:0;transform:translate(-50%,-90%) scale(.8)}12%,80%{opacity:1;transform:translate(-50%,-100%) scale(1)}100%{opacity:0;transform:translate(-50%,-115%)}}
+
+/* hardware knowledge meter */
+.meter{margin:30px 6px 0;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.meter .row{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}
+.meter b{color:var(--yellow);font-weight:700}
+.bar{position:relative;height:14px;border:2px solid #5a4c3a;border-radius:99px;overflow:hidden;background:repeating-linear-gradient(-45deg,#221b14 0 6px,#1d1711 6px 12px)}
+.bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--yellow);border-radius:99px;animation:fill 1.4s cubic-bezier(.3,.7,.2,1) 2.6s forwards,sput 2.4s ease-in-out 4.2s infinite}
+@keyframes fill{0%{width:0}55%{width:22%}70%{width:9%}100%{width:4%}}
+@keyframes sput{0%,100%{width:4%}50%{width:6%}}
+.meter small{display:block;margin-top:8px;letter-spacing:.06em;text-transform:none;font-family:var(--sans);font-size:13.5px;color:#8d806a}
+
+footer{padding:22px 20px 26px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);max-width:1160px;width:100%;margin-inline:auto;border-top:1px solid var(--line)}
 footer a{color:#f3ead6}
+
+@media (max-width:899px){
+  main{grid-template-columns:1fr;grid-template-areas:"hd" "me" "note";grid-template-rows:auto;padding-top:36px}
+  .me{position:relative;top:0;width:min(84vw,380px);margin:44px auto 0}
+  .note h2:first-child{margin-top:44px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .mark path{stroke-dashoffset:0}
+  .me-tag{transform:rotate(7deg)}
+  .bar i{width:4%}
+  mark.hl{background-size:100% 100%;color:var(--ink)}
+}
 </style>
 <header class="top"><div class="in"><a href="../index.html">&larr; Scrap Hack</a><a class="apply" href="../index.html#venues">Sourcing ongoing</a></div></header>
 <main>
-  <p class="doc">Organiser's note</p>
-  <h1>Coming<br><span class="y">soon.</span></h1>
-  <p class="s">A note from the team behind Scrap Hack, after the event. <a href="../index.html">Back to the main page</a>.</p>
-</main>
-<footer>Scrap Hack 2026 / TinkerHub Foundation</footer>
+  <figure class="me" id="me">
+    <div class="pol" id="pol" role="button" tabindex="0" aria-label="Photo of Femina. Tap to say hi.">
+      <span class="tape" aria-hidden="true"></span>
+      <div class="ph">
+        <img src="femina.webp" width="900" height="1124" alt="Femina, smiling, sitting on a white window ledge in a red block-print top and jeans" fetchpriority="high">
+        <svg class="mark" viewBox="0 0 900 1124" aria-hidden="true">
+          <path class="ring" pathLength="1" d="M338 552C334 438 400 384 466 384C540 384 598 442 594 524C590 612 528 670 460 668C388 666 334 604 342 520C348 450 402 400 456 396"/>
+          <path class="arr" pathLength="1" d="M776 200C812 306 742 400 624 452"/>
+          <path class="head" pathLength="1" d="M672 404L624 452L684 470"/>
+        </svg>
+        <span class="me-tag" aria-hidden="true">That's me!</span>
+      </div>
+      <figcaption>Femina <span>Project coordinator</span></figcaption>
+    </div>
+    <div class="meter" aria-label="Hardware knowledge: about 4 percent, and climbing">
+      <div class="row"><span>Hardware knowledge</span><b>~4%</b></div>
+      <div class="bar"><i></i></div>
+      <small>Barely knows what jumper wires are. Working on it.</small>
+    </div>
+  </figure>
 
+  <div class="hd">
+    <p class="doc">Organiser's note</p>
+    <h1>Hey<br><span class="y">peeps.</span></h1>
+  </div>
+
+  <article class="note">
+    <h2>Who am I</h2>
+    <p class="first">i'm <b>femina</b>. i work as a project coordinator at tinkerhub foundation. most days, i spend my time talking to campus leads and wondering what is the next big thing we can do for these students.</p>
+    <p>i myself am a complete beginner when it comes to hardware (barely know what jumper wires are). and as someone with zero ball knowledge in hardware, why would i choose to conduct a hardware hackathon? good question. the literal answer is, why not. i wanted to do something of my own, but i had no idea. then came <span class="drum" aria-hidden="true">*drumroll*</span> <mark class="hl">Arundhathi Krishna</mark>.</p>
+
+    <p class="slide" aria-hidden="true"><span>smooth transition into the next section <i>&darr;</i></span></p>
+
+    <h2>Why Scrap Hack</h2>
+    <p>so there i was, wanting to do something but nothing to do. so then, this powerhouse of ideas comes up to me and says, <b>&ldquo;Why don't you run Scrap Hack?&rdquo;</b> yessss! of course, i'm up for it, i'm for anything. naturally, it came under my ownership. i gotta admit, this idea belonged to <span class="drum" aria-hidden="true">*another drumroll*</span> <mark class="hl">Shan</mark> <span class="role">(Space Manager, TinkerSpace Kochi)</span>.</p>
+    <p>the whole point of Scrap Hack is simple: get people familiarized with hardware. basic sensors, breadboards, microcontrollers, etc.</p>
+    <p>although, there was a catch. you'd have to source your components from <b>scrap shops, broken electronics, and discarded items.</b></p>
+
+    <div class="more"><b>To be continued&hellip;</b><span>there's more to this note. keep checking the website to read the rest.</span></div>
+
+    <a class="back" href="../index.html">Back to Scrap Hack</a>
+  </article>
+</main>
+<footer>Scrap Hack 2026 / TinkerHub Foundation / <a href="https://www.instagram.com/tinkerhub" target="_blank" rel="noopener">@tinkerhub</a></footer>
+
+<script>
+(function(){
+  /* drumrolls and name highlights play as each paragraph scrolls in */
+  var ps=[].slice.call(document.querySelectorAll('.note p'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.6});
+    ps.forEach(function(p){io.observe(p)});
+  }else ps.forEach(function(p){p.classList.add('in')});
+
+  /* tap the photo to say hi */
+  var pol=document.getElementById('pol'),n=0,SAY=['hi!','yes, still me','i run this thing','ok, go read the note','still here?'];
+  function hi(){
+    var old=pol.querySelector('.say');if(old)old.remove();
+    var b=document.createElement('span');b.className='say';b.textContent=SAY[n++%SAY.length];pol.appendChild(b);
+    setTimeout(function(){b.remove()},1900);
+    pol.classList.remove('wig');void pol.offsetWidth;pol.classList.add('wig');
+  }
+  pol.addEventListener('click',hi);
+  pol.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();hi()}});
+})();
+</script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)}</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script>window.si=window.si||function(){(window.siq=window.siq||[]).push(arguments)}</script>
