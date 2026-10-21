@@ -6,6 +6,9 @@
 <title>Scrap Hack Participants</title>
 <meta name="description" content="Everything participants need for Scrap Hack 2026: timeline, sessions, sourcing, filming and project ideas.">
 <meta name="theme-color" content="#14100c">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <meta property="og:title" content="Scrap Hack Participants">
 <meta property="og:description" content="Everything participants need for Scrap Hack 2026: timeline, sessions, sourcing, filming and project ideas.">
 <meta property="og:type" content="website">
@@ -938,6 +941,12 @@ body.zap{animation:zap .6s steps(2) 1}
 }
 @media (max-width:600px){.cta,.top .apply{white-space:nowrap;font-size:11px;padding:7px 10px}}
 
+/* sessions: done vs up next */
+.sess.past{opacity:.6}
+.sess.next{box-shadow:0 0 0 3px var(--yellow)}
+.sess .upnext{display:none;font-style:normal}
+.sess.next .upnext{display:inline-block;margin-left:10px;padding:3px 9px;border-radius:99px;background:var(--yellow);color:var(--ink);line-height:1.2}
+
 /* ---------- phones: menu, tap targets, inline details ---------- */
 .lk{display:contents}
 .mtog,.mcta{display:none}
@@ -1094,25 +1103,25 @@ body.zap{animation:zap .6s steps(2) 1}
         <p>Completed. Keep it in mind before you open anything. It covered what is safe to dismantle and how.</p>
         <ul><li>Devices that should never be opened</li><li>Risks from capacitors, batteries and damaged wiring</li><li>Basic tool handling and safe testing</li><li>Disposing of unsafe parts properly</li></ul>
       </article>
-      <article class="sess">
+      <article class="sess past">
         <span class="badge">Session 1</span>
         <h3>Hardware 101</h3>
-        <span class="when">Date TBC</span>
-        <p>Meet the parts you are about to pull out of dead gadgets.</p>
+        <span class="when">Done</span>
+        <p>Met the parts you are about to pull out of dead gadgets.</p>
         <ul><li>Identify basic electronic components</li><li>What each one does</li><li>Safe handling</li><li>Beginner hardware concepts</li></ul>
       </article>
-      <article class="sess">
+      <article class="sess past">
         <span class="badge">Session 2</span>
         <h3>Testing and reusing</h3>
-        <span class="when">Date TBC</span>
-        <p>Find out which of your salvaged parts still work.</p>
+        <span class="when">Done</span>
+        <p>Found out which salvaged parts still work.</p>
         <ul><li>Using a multimeter</li><li>Examining salvaged parts</li><li>Understanding simple circuits</li><li>Spotting reusable components</li></ul>
       </article>
-      <article class="sess">
-        <span class="badge">Session 3</span>
+      <article class="sess next" data-end="2026-10-22T23:00:00+05:30">
+        <span class="badge">Session 3 <em class="upnext">Up next</em></span>
         <h3>Scrap to prototype</h3>
-        <span class="when">Date TBC</span>
-        <p>Turn a pile of parts into a plan.</p>
+        <span class="when" data-done="Done">Oct 22, evening / Online</span>
+        <p>The last session before the hackathon. Turn a pile of parts into a plan.</p>
         <ul><li>Combining the parts you have</li><li>Prototyping techniques</li><li>Planning with limited resources</li><li>Common troubleshooting methods</li></ul>
       </article>
     </div>
@@ -1313,8 +1322,9 @@ body.zap{animation:zap .6s steps(2) 1}
     [dt(10,10),dt(10,10,23),'Oct 10','Sat','Registrations open','Form goes live. Spread the word.'],
     [dt(10,13),dt(10,13,23),'Oct 13','Tue','Registration closes','Last day to apply.'],
     ['done',null,'Done','','Team announcements','Teams are out and have their WhatsApp groups.'],
-    [null,null,'TBC','','Pre-event sessions','Safety orientation is done. Three hardware sessions to go.'],
-    [null,null,'TBC','','Source, test, film','Find scrap, test your parts and film your Scrap Diary.'],
+    ['done',null,'Done','','Safety, Hardware 101, Testing','Safety orientation and the first two hardware sessions are done.'],
+    [dt(10,22),dt(10,22,23),'Oct 22','Thu','Scrap to prototype','The last pre-event session. Online, in the evening.'],
+    [null,null,'Ongoing','','Source, test, film','Find scrap, test your parts and film your Scrap Diary.'],
     [null,null,'TBC','','Inventory checkpoint','Share your parts list and a rough idea.']
   ];
   var T2=[
@@ -1337,6 +1347,13 @@ body.zap{animation:zap .6s steps(2) 1}
     ol.innerHTML=html;
   }
   renderTL('tl1',T1);
+
+  /* sessions: the upcoming one flips to done once it is over */
+  document.querySelectorAll('.sess.next[data-end]').forEach(function(s){
+    if(Date.now()<new Date(s.dataset.end).getTime())return;
+    s.classList.remove('next');s.classList.add('past');
+    var w=s.querySelector('.when');if(w&&w.dataset.done)w.textContent=w.dataset.done;
+  });
 
   /* projects */
   var S=function(q){return ['Search guides','https://www.instructables.com/search/?q='+encodeURIComponent(q)]};
