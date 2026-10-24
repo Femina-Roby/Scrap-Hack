@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Scrap Hack Timer</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#14100c">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* A countdown that lives only in this browser. It stores the finish time, so sleep, reloads and closed tabs do not stop it. */
+:root{--ink:#14100c;--bench:#1a1510;--paper:#ebe2cf;--yellow:#ffe500;--rust:#e2491a;--mute:#b8ab92;--line:#3a3025;--display:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;--sans:'Instrument Sans',system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;background:var(--bench);color:#f3ead6;font-family:var(--sans);font-size:16px;line-height:1.5;display:flex;flex-direction:column;min-height:100svh}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.08);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.top a{text-decoration:none;color:#d9cdb4;padding:8px 0}
+.top a:hover{color:var(--yellow)}
+.top span{color:var(--mute)}
+
+main{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:28px 20px 40px;gap:clamp(18px,4vh,40px)}
+.lbl{margin:0;font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 75,"opsz" 96;text-transform:uppercase;font-size:clamp(22px,4vw,48px);line-height:1;color:var(--yellow);min-height:1em}
+.clock{font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 75,"opsz" 96;font-variant-numeric:tabular-nums;font-size:clamp(64px,19vw,300px);line-height:.86;letter-spacing:-.01em;color:#f7efdc;white-space:nowrap}
+.clock .c{color:var(--mute);margin:0 .02em}
+.sub{margin:0;font-size:clamp(14px,1.6vw,18px);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);min-height:1.5em}
+.paused .clock{color:var(--mute)}
+.done .clock{color:var(--rust);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:.25}}
+.done .lbl{color:var(--rust)}
+
+/* controls */
+.ctl{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.btn{min-height:46px;padding:10px 20px;border-radius:10px;border:2px solid #f3ead6;background:transparent;font-weight:600;font-size:16px;cursor:pointer}
+.btn:hover{background:rgba(255,255,255,.06)}
+.btn.go{background:var(--yellow);border-color:var(--yellow);color:var(--ink)}
+.btn.go:hover{background:#fff56b}
+.btn.warn{border-color:var(--rust);color:#ff8a5c}
+.btn.sm{min-height:40px;padding:6px 14px;font-size:14px;border-color:#5a4c3a;color:#d9cdb4}
+.btn[hidden]{display:none}
+
+/* setup */
+.setup{width:min(640px,100%);text-align:left;border:1px solid var(--line);border-radius:14px;padding:22px 22px 24px;background:var(--ink)}
+.setup h2{margin:0 0 16px;font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 75,"opsz" 96;text-transform:uppercase;font-size:28px;line-height:1}
+.tabs{display:flex;gap:6px;margin-bottom:18px}
+.tabs button{flex:1;min-height:42px;border:2px solid #5a4c3a;background:none;border-radius:8px;font-weight:600;cursor:pointer;color:#d9cdb4}
+.tabs button[aria-pressed="true"]{border-color:var(--yellow);color:var(--ink);background:var(--yellow)}
+label{display:block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
+input{width:100%;min-height:46px;padding:8px 12px;border:2px solid #5a4c3a;border-radius:8px;background:var(--bench);font-size:18px}
+input:focus{border-color:var(--yellow);outline:0}
+.row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.field{margin-bottom:16px}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin:-4px 0 18px}
+.presets button{min-height:38px;padding:6px 12px;border:1px dashed #6a5a44;border-radius:8px;background:none;color:#d9cdb4;font-size:14px;cursor:pointer}
+.presets button:hover{border-color:var(--yellow);color:var(--yellow)}
+.hint{margin:4px 0 0;font-size:13.5px;color:#8d806a}
+.err{color:#ff8a5c;font-size:14px;margin:0 0 12px;min-height:1.2em}
+
+footer{padding:14px 20px 18px;font-size:12.5px;color:#8d806a;text-align:center}
+
+/* full screen / projector: hide everything but the clock until the mouse moves */
+.calm .top,.calm .ctl,.calm footer{opacity:0;transition:opacity .4s}
+.calm{cursor:none}
+@media (max-width:600px){.row{gap:6px}.setup{padding:18px 16px 20px}}
+@media (prefers-reduced-motion:reduce){.done .clock{animation:none}}
+</style>
+</head>
+<body>
+<header class="top"><a href="../index.html">&larr; Scrap Hack</a><span>Timer / this device only</span></header>
+
+<main id="app">
+  <section id="face" hidden>
+    <p class="lbl" id="lblOut"></p>
+    <div class="clock" id="clock" role="timer" aria-live="off">00<span class="c">:</span>00<span class="c">:</span>00</div>
+    <p class="sub" id="sub"></p>
+  </section>
+
+  <div class="ctl" id="ctl" hidden>
+    <button class="btn go" id="pause" type="button">Pause</button>
+    <button class="btn go" id="resume" type="button" hidden>Resume</button>
+    <button class="btn sm" id="minus" type="button" title="Take 5 minutes off">&minus;5 min</button>
+    <button class="btn sm" id="plus" type="button" title="Add 5 minutes">+5 min</button>
+    <button class="btn sm" id="full" type="button">Full screen</button>
+    <button class="btn warn" id="reset" type="button">Reset</button>
+  </div>
+
+  <form class="setup" id="setup" hidden>
+    <h2>Set the timer</h2>
+    <div class="tabs" role="group" aria-label="Timer mode">
+      <button type="button" data-mode="dur" aria-pressed="true">Run for</button>
+      <button type="button" data-mode="until" aria-pressed="false">Run until</button>
+    </div>
+    <div class="field"><label for="name">Label (optional)</label><input id="name" maxlength="60" placeholder="e.g. Kochi build time" autocomplete="off"></div>
+
+    <div id="durBox">
+      <div class="presets"><button type="button" data-p="18,0,Kochi build time">18 h (Kochi)</button><button type="button" data-p="12,0,Calicut build time">12 h (Calicut)</button><button type="button" data-p="1,0,">1 h</button><button type="button" data-p="0,30,">30 min</button><button type="button" data-p="0,5,">5 min</button></div>
+      <div class="row field">
+        <div><label for="h">Hours</label><input id="h" type="number" inputmode="numeric" min="0" max="99" value="0"></div>
+        <div><label for="m">Minutes</label><input id="m" type="number" inputmode="numeric" min="0" max="59" value="0"></div>
+        <div><label for="s">Seconds</label><input id="s" type="number" inputmode="numeric" min="0" max="59" value="0"></div>
+      </div>
+    </div>
+
+    <div id="untilBox" hidden>
+      <div class="row2 field">
+        <div><label for="ud">Date</label><input id="ud" type="date"></div>
+        <div><label for="ut">Time</label><input id="ut" type="time" step="60"></div>
+      </div>
+      <p class="hint">Uses this laptop's clock and time zone.</p>
+    </div>
+
+    <p class="err" id="err" role="alert"></p>
+    <button class="btn go" type="submit">Start</button>
+  </form>
+</main>
+
+<footer>Saved only in this browser on this device. Keeps running through sleep, reloads and closed tabs.</footer>
+
+<script>
+(function(){
+  var KEY='scraphack.timer.v1';
+  var $=function(id){return document.getElementById(id)};
+  var face=$('face'),ctl=$('ctl'),setup=$('setup'),clock=$('clock'),sub=$('sub'),lblOut=$('lblOut'),err=$('err');
+  var mode='dur',st=null,beeped=false,lock=null;
+
+  /* storage: one record per browser. {label,end,left,state:'run'|'pause'} */
+  function load(){try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}}
+  function save(v){st=v;try{v?localStorage.setItem(KEY,JSON.stringify(v)):localStorage.removeItem(KEY)}catch(e){}}
+
+  function p2(n){return String(n).padStart(2,'0')}
+  function fmt(ms){
+    var t=Math.max(0,Math.ceil(ms/1000)),d=Math.floor(t/86400),h=Math.floor(t%86400/3600),m=Math.floor(t%3600/60),s=t%60;
+    var c='<span class="c">:</span>';
+    return (d?d+'d '+p2(h):p2(h))+c+p2(m)+c+p2(s);
+  }
+  function plain(ms){var t=Math.max(0,Math.ceil(ms/1000));return (t>=3600?Math.floor(t/3600)+':':'')+p2(Math.floor(t%3600/60))+':'+p2(t%60)}
+  function endsAt(ts){var d=new Date(ts),now=new Date(),same=d.toDateString()===now.toDateString();
+    return 'Ends '+(same?'':d.toLocaleDateString([], {weekday:'short',day:'numeric',month:'short'})+', ')+d.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}
+
+  function beep(){try{var AC=window.AudioContext||window.webkitAudioContext,a=new AC();[0,.35,.7].forEach(function(t){var o=a.createOscillator(),g=a.createGain();o.frequency.value=880;g.gain.setValueAtTime(.0001,a.currentTime+t);g.gain.exponentialRampToValueAtTime(.3,a.currentTime+t+.02);g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+t+.3);o.connect(g);g.connect(a.destination);o.start(a.currentTime+t);o.stop(a.currentTime+t+.32)});setTimeout(function(){a.close()},1500)}catch(e){}}
+
+  /* keep the screen awake while a timer runs (where the browser allows it) */
+  function wake(on){
+    if(!('wakeLock' in navigator))return;
+    if(on&&!lock&&document.visibilityState==='visible'){navigator.wakeLock.request('screen').then(function(l){lock=l;l.addEventListener('release',function(){lock=null})}).catch(function(){})}
+    if(!on&&lock){lock.release().catch(function(){});lock=null}
+  }
+
+  function render(){
+    st=load();
+    var has=!!st;
+    face.hidden=!has;ctl.hidden=!has;setup.hidden=has;
+    document.body.classList.remove('paused','done');
+    if(!has){document.title='Scrap Hack Timer';wake(false);return}
+    lblOut.textContent=st.label||'';
+    var left=st.state==='pause'?st.left:st.end-Date.now();
+    clock.innerHTML=fmt(left);
+    $('pause').hidden=st.state!=='run'||left<=0;$('resume').hidden=st.state!=='pause';
+    if(st.state==='pause'){document.body.classList.add('paused');sub.textContent='Paused';document.title='Paused / '+plain(left);wake(false);return}
+    if(left<=0){
+      document.body.classList.add('done');sub.textContent="Time's up";document.title="Time's up!";wake(false);
+      if(!beeped&&Date.now()-st.end<60000){beeped=true;beep()}
+      return
+    }
+    beeped=false;sub.textContent=endsAt(st.end);document.title=plain(left)+' / '+(st.label||'Scrap Hack');wake(true);
+  }
+
+  /* tick by the wall clock, so time slept is never lost */
+  function loop(){render();setTimeout(loop,1000-(Date.now()%1000)+5)}
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)render()});
+  window.addEventListener('focus',render);
+  window.addEventListener('pageshow',render);
+  window.addEventListener('storage',function(e){if(e.key===KEY)render()}); /* other tabs on this device */
+
+  /* setup form */
+  function setMode(m){mode=m;document.querySelectorAll('.tabs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.mode===m)});$('durBox').hidden=m!=='dur';$('untilBox').hidden=m!=='until';err.textContent=''}
+  document.querySelectorAll('.tabs button').forEach(function(b){b.addEventListener('click',function(){setMode(b.dataset.mode)})});
+  document.querySelectorAll('.presets button').forEach(function(b){b.addEventListener('click',function(){var p=b.dataset.p.split(',');$('h').value=p[0];$('m').value=p[1];$('s').value=0;if(p[2]&&!$('name').value)$('name').value=p[2]})});
+  (function(){var t=new Date(Date.now()+3600000);$('ud').value=t.getFullYear()+'-'+p2(t.getMonth()+1)+'-'+p2(t.getDate());$('ut').value=p2(t.getHours())+':00'})();
+
+  setup.addEventListener('submit',function(e){
+    e.preventDefault();var end;
+    if(mode==='dur'){
+      var ms=((+$('h').value||0)*3600+(+$('m').value||0)*60+(+$('s').value||0))*1000;
+      if(ms<=0){err.textContent='Set a time above zero.';return}
+      end=Date.now()+ms;
+    }else{
+      if(!$('ud').value||!$('ut').value){err.textContent='Pick a date and a time.';return}
+      var d=$('ud').value.split('-'),t=$('ut').value.split(':');
+      end=new Date(+d[0],+d[1]-1,+d[2],+t[0],+t[1],0).getTime();
+      if(end<=Date.now()){err.textContent='That time has already passed.';return}
+    }
+    err.textContent='';beeped=false;
+    save({label:$('name').value.trim(),end:end,left:0,state:'run'});render();
+  });
+
+  /* controls */
+  $('pause').addEventListener('click',function(){st=load();if(!st||st.state!=='run')return;save({label:st.label,end:0,left:Math.max(0,st.end-Date.now()),state:'pause'});render()});
+  $('resume').addEventListener('click',function(){st=load();if(!st||st.state!=='pause')return;save({label:st.label,end:Date.now()+st.left,left:0,state:'run'});render()});
+  function nudge(ms){st=load();if(!st)return;
+    if(st.state==='pause')st.left=Math.max(0,st.left+ms);else{st.end=Math.max(Date.now(),st.end+ms)}
+    save(st);render()}
+  $('plus').addEventListener('click',function(){nudge(5*60000)});
+  $('minus').addEventListener('click',function(){nudge(-5*60000)});
+  $('reset').addEventListener('click',function(){if(confirm('Reset the timer on this device?')){save(null);render()}});
+  $('full').addEventListener('click',function(){var d=document.documentElement;if(document.fullscreenElement)document.exitFullscreen();else if(d.requestFullscreen)d.requestFullscreen().catch(function(){})});
+  document.addEventListener('fullscreenchange',function(){$('full').textContent=document.fullscreenElement?'Exit full screen':'Full screen'});
+
+  /* projector mode: controls fade out after 3s without the mouse */
+  var idle;function poke(){document.body.classList.remove('calm');clearTimeout(idle);idle=setTimeout(function(){if(load())document.body.classList.add('calm')},3000)}
+  ['mousemove','pointerdown','keydown','touchstart'].forEach(function(ev){document.addEventListener(ev,poke,{passive:true})});
+
+  loop();poke();
+})();
+</script>
+</body>
+</html>
