@@ -32,14 +32,12 @@ a{color:inherit}
 .top a:hover{color:var(--yellow)}
 .top .apply{background:var(--yellow);color:var(--ink);padding:8px 12px;border-radius:6px;font-weight:700}
 .top .apply:hover{color:var(--ink)}
-main{flex:1;max-width:1160px;width:100%;margin-inline:auto;padding:56px 20px 72px;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);grid-template-areas:"me hd" "me note" "rest rest";grid-template-rows:auto 1fr auto;column-gap:clamp(40px,7vw,110px);align-items:start}
-.me{grid-area:me;align-self:start}.hd{grid-area:hd}.note{grid-area:note}
-.notes{display:contents}
-.note h2:first-child{margin-top:36px}
-/* from "why scrap hack" on, the note runs in one centred column under the photo */
-.note.rest{grid-area:rest;justify-self:center;width:100%;max-width:44rem}
-.note.rest h2:first-child{margin-top:64px}
-.rest p,.rest .shot,.rest .sessions,.rest .more{max-width:none}
+main{flex:1;max-width:calc(44rem + 40px);width:100%;margin-inline:auto;padding:56px 20px 72px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"me hd" "note note";grid-template-rows:auto auto;column-gap:48px;align-items:start}
+/* photo and title side by side up top, then the whole note in one centred column */
+.me{grid-area:me;align-self:start}.hd{grid-area:hd;align-self:center}
+.note{grid-area:note;justify-self:center;width:100%;max-width:44rem}
+.note h2:first-child{margin-top:80px}
+.note p,.note .shot,.note .sessions,.note .more{max-width:none}
 .doc{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow);margin:0 0 18px}
 h1{margin:0;font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 75,"opsz" 96;text-transform:uppercase;font-size:clamp(56px,8vw,120px);line-height:.86;letter-spacing:-.015em}
 h1 .y{color:var(--yellow)}
@@ -124,7 +122,7 @@ footer{padding:22px 20px 26px;font-family:var(--mono);font-size:11px;letter-spac
 footer a{color:#f3ead6}
 
 @media (max-width:899px){
-  main{grid-template-columns:1fr;grid-template-areas:"hd" "me" "note" "rest";grid-template-rows:auto;padding-top:36px}
+  main{grid-template-columns:1fr;grid-template-areas:"hd" "me" "note";grid-template-rows:auto;padding-top:36px}
   .me{position:relative;top:0;width:min(84vw,380px);margin:44px auto 0}
   .note h2:first-child{margin-top:44px}
 }
@@ -164,16 +162,13 @@ footer a{color:#f3ead6}
     <h1>Hey<br><span class="y">peeps.</span></h1>
   </div>
 
-  <article class="notes">
-  <div class="note">
+  <article class="note">
     <h2>Who am I</h2>
     <p class="first">i'm <b>femina</b>. i work as a project coordinator at tinkerhub foundation. most days, i spend my time talking to campus leads and wondering what is the next big thing we can do for these students.</p>
     <p>i myself am a complete beginner when it comes to hardware (barely know what jumper wires are). and as someone with zero ball knowledge in hardware, why would i choose to conduct a hardware hackathon? good question. the literal answer is, why not. i wanted to do something of my own, but i had no idea. then came <span class="drum" aria-hidden="true">*drumroll*</span> <mark class="hl">Arundhathi Krishna</mark>.</p>
 
     <p class="slide" aria-hidden="true"><span>smooth transition into the next section <i>&darr;</i></span></p>
-  </div>
 
-  <div class="note rest">
     <h2>Why Scrap Hack</h2>
     <p>so there i was, wanting to do something but nothing to do. so then, this powerhouse of ideas comes up to me and says, <b>&ldquo;Why don't you run Scrap Hack?&rdquo;</b> yessss! of course, i'm up for it, i'm for anything. naturally, it came under my ownership. i gotta admit, this idea belonged to <span class="drum" aria-hidden="true">*another drumroll*</span> <mark class="hl">Shan</mark> <span class="role">(Space Manager, TinkerSpace Kochi)</span>.</p>
     <p>the whole point of Scrap Hack is simple: get people familiarized with hardware. basic sensors, breadboards, microcontrollers, etc.</p>
@@ -208,7 +203,6 @@ footer a{color:#f3ead6}
     <div class="more"><b>To be continued&hellip;</b><span>there's more to this note. keep checking the website to read the rest.</span></div>
 
     <a class="back" href="../index.html">Back to Scrap Hack</a>
-  </div>
   </article>
 </main>
 <footer>Scrap Hack 2026 / TinkerHub Foundation / <a href="https://www.instagram.com/tinkerhub" target="_blank" rel="noopener">@tinkerhub</a></footer>
