@@ -166,11 +166,11 @@ h3{font-family:var(--display);font-weight:700;font-variation-settings:"wdth" 88,
 .pipe.in::after{width:92%}
 .node{position:relative;z-index:1;text-align:left}
 .node .ic{width:68px;height:68px;border-radius:50%;background:var(--bench-2);border:3px solid var(--line);display:grid;place-items:center;transition:border-color .4s,background .4s,transform .4s}
-.node .ic svg{width:34px;height:34px;stroke:var(--mute);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .4s}
+.node .ic b{font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 75,"opsz" 96;font-size:34px;line-height:1;color:var(--mute);transition:color .4s}
 .pipe.in .node .ic{border-color:var(--yellow);background:#2e2511;transform:scale(1)}
-.pipe.in .node .ic svg{stroke:var(--yellow)}
+.pipe.in .node .ic b{color:var(--yellow)}
 .pipe.in .node:nth-child(1) .ic{transition-delay:.2s}.pipe.in .node:nth-child(2) .ic{transition-delay:.8s}.pipe.in .node:nth-child(3) .ic{transition-delay:1.4s}.pipe.in .node:nth-child(4) .ic{transition-delay:2s}
-.pipe.in .node:nth-child(1) .ic svg{transition-delay:.2s}.pipe.in .node:nth-child(2) .ic svg{transition-delay:.8s}.pipe.in .node:nth-child(3) .ic svg{transition-delay:1.4s}.pipe.in .node:nth-child(4) .ic svg{transition-delay:2s}
+.pipe.in .node:nth-child(1) .ic b{transition-delay:.2s}.pipe.in .node:nth-child(2) .ic b{transition-delay:.8s}.pipe.in .node:nth-child(3) .ic b{transition-delay:1.4s}.pipe.in .node:nth-child(4) .ic b{transition-delay:2s}
 .node .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--mute);margin:16px 0 4px;text-transform:uppercase}
 .node h3{font-size:30px}
 .node p{margin:8px 0 0;color:#cfc3a9;font-size:15.5px;max-width:15rem}
@@ -463,7 +463,7 @@ h2{font-size:clamp(34px,min(7vw,8.4vh),88px);line-height:.9}
 .venues{margin-top:56px!important}
 .pipe{margin-top:18px;gap:16px}
 .pipe::before,.pipe::after{top:24px}
-.node .ic{width:48px;height:48px;border-width:2px}.node .ic svg{width:24px;height:24px}
+.node .ic{width:48px;height:48px;border-width:2px}.node .ic b{font-size:24px}
 .node .k{margin:8px 0 2px}
 .node h3{font-size:clamp(18px,2.8vh,24px)}
 .node p{font-size:13.5px;margin-top:4px}
@@ -623,7 +623,7 @@ body.zap{animation:zap .6s steps(2) 1}
 @media (min-width:900px){.intro{max-width:min(1480px,100%)!important;padding-inline:clamp(48px,10vw,200px)!important}}
 
 @media (max-width:600px){.cta,.top .apply{white-space:nowrap;font-size:11px;padding:7px 10px}}
-.where{display:flex;align-items:center;gap:10px;margin-top:14px;padding:9px 14px 9px 10px;border:1.5px dashed var(--line);border-radius:12px;width:fit-content;max-width:100%;transition:transform .2s,border-color .2s,background .2s}
+.where{display:flex;align-items:center;gap:10px;margin-top:14px;padding:9px 14px;border:1.5px dashed var(--line);border-radius:12px;width:fit-content;max-width:100%;transition:transform .2s,border-color .2s,background .2s}
 .where svg{flex:none;width:26px;height:26px;stroke:var(--yellow);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .where span{display:grid;line-height:1.2}
 .where b{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#f3ead6;font-weight:700}
@@ -631,7 +631,7 @@ body.zap{animation:zap .6s steps(2) 1}
 .node:hover .where{transform:translateY(-3px);border-color:var(--yellow);background:rgba(255,229,0,.06)}
 .where.home{border-style:solid;border-color:var(--yellow);background:rgba(255,229,0,.1)}
 .where.home b{color:var(--yellow)}
-@media (max-height:820px) and (min-width:900px){.where{margin-top:8px;padding:6px 10px 6px 8px}.where svg{width:20px;height:20px}.where i{display:none}}
+@media (max-height:820px) and (min-width:900px){.where{margin-top:8px;padding:6px 10px}.where svg{width:20px;height:20px}.where i{display:none}}
 
 .node{display:flex;flex-direction:column;align-items:flex-start}
 .node .where{margin-top:auto;width:100%;max-width:15.5rem;box-sizing:border-box}
@@ -765,15 +765,14 @@ body.zap{animation:zap .6s steps(2) 1}
 <section class="sec dark" id="overview">
   <div class="wrap">
     <div class="mascot r slot bob" data-char="fanny" aria-hidden="true"></div>
-    <p class="eyebrow"><span>Section 01</span><span>Overview</span></p>
     <h2>Start with the scrap.<br>Not the idea.</h2>
     <p class="lead">Most hackathons start with an idea, then you buy the parts. Scrap Hack flips it. You find discarded electronics, learn what is inside, and build from what you recover.</p>
 
     <div class="pipe rv" id="pipe">
-      <div class="node"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></div><div class="k">Step 1</div><h3>Find the components</h3><p>Scrap shops, old toys, dead gadgets at home.</p><div class="where"><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M3 9c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3"/><path d="M10 20v-5h4v5"/></svg><span><b>Scrap shops</b><i>Near you, or in your own home</i></span></div></div>
-      <div class="node"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></div><div class="k">Step 2</div><h3>Understand how they work</h3><p>Test them with a multimeter. Learn what each part does.</p><div class="where"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg><span><b>Home or college lab</b><i>Plus the hardware sessions</i></span></div></div>
-      <div class="node"><div class="ic"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg></div><div class="k">Step 3</div><h3>Explore possibilities</h3><p>Match your parts to ideas. Stay flexible.</p><div class="where"><svg viewBox="0 0 24 24"><path d="M4 5h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M20 9a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-1v3l-3-3h-4"/></svg><span><b>With your team</b><i>On your WhatsApp group</i></span></div></div>
-      <div class="node"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5 5L3 18l3 3 6.7-6.7a4 4 0 0 0 5-5l-2.4 2.4-2.6-.6-.6-2.6z"/></svg></div><div class="k">Step 4</div><h3>Build something</h3><p>Prototype, break it, fix it.</p><div class="where home"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span><b>Back at TinkerSpace</b><i>Kochi or Calicut, Oct 24-25</i></span></div></div>
+      <div class="node"><div class="ic"><b>1</b></div><div class="k">Step 1</div><h3>Find the components</h3><p>Scrap shops, old toys, dead gadgets at home.</p><div class="where"><span><b>Scrap shops</b><i>Near you, or in your own home</i></span></div></div>
+      <div class="node"><div class="ic"><b>2</b></div><div class="k">Step 2</div><h3>Understand how they work</h3><p>Test them with a multimeter. Learn what each part does.</p><div class="where"><span><b>Home or college lab</b><i>Plus the hardware sessions</i></span></div></div>
+      <div class="node"><div class="ic"><b>3</b></div><div class="k">Step 3</div><h3>Explore possibilities</h3><p>Match your parts to ideas. Stay flexible.</p><div class="where"><span><b>With your team</b><i>On your WhatsApp group</i></span></div></div>
+      <div class="node"><div class="ic"><b>4</b></div><div class="k">Step 4</div><h3>Build something</h3><p>Prototype, break it, fix it.</p><div class="where home"><span><b>Back at TinkerSpace</b><i>Kochi or Calicut, Oct 24-25</i></span></div></div>
     </div>
 
     <div class="theme rv">
@@ -786,7 +785,6 @@ body.zap{animation:zap .6s steps(2) 1}
 
 <section class="sec paper" id="venues">
   <div class="wrap">
-    <p class="eyebrow"><span>Section 02</span><span>Venues</span></p>
     <h2>Two cities.<br>One weekend.</h2>
     <p class="lead">Registrations are closed and sourcing is ongoing. Both venues run on Oct 24-25 at a TinkerSpace.</p>
 
@@ -823,7 +821,6 @@ body.zap{animation:zap .6s steps(2) 1}
 <section class="sec dark" id="participants">
   <div class="wrap">
     <div class="mascot r slot bob" data-char="tosta" aria-hidden="true"></div>
-    <p class="eyebrow"><span>Section 03</span><span>Participants' note</span></p>
     <h2>Your prep<br>guide.</h2>
     <div class="pidx"><a class="pi" href="participants/index.html#timeline"><span class="k">01</span><b>Timeline</b><span class="d">Every date from Oct 10 to Oct 25.</span></a><a class="pi" href="participants/index.html#sessions"><span class="k">02</span><b>Pre-event sessions</b><span class="d">Safety plus three hardware sessions. No experience needed.</span></a><a class="pi" href="participants/index.html#sourcing"><span class="k">03</span><b>Sourcing</b><span class="d">Where to find scrap and what to leave alone.</span></a><a class="pi" href="participants/index.html#diary"><span class="k">04</span><b>Scrap Diary</b><span class="d">Film your hunt. Reference videos inside.</span></a><a class="pi" href="participants/index.html#projects"><span class="k">05</span><b>Reference projects</b><span class="d">Ideas matched to scrap you can find.</span></a><a class="pi soon" href="participants/index.html#campus"><span class="k">06 / soon</span><b>Run it on your campus</b><span class="d">Coming after the event.</span></a></div>
     <div class="pgo"><a class="pgl" href="participants/index.html">Open the participants' note <span aria-hidden="true">&rarr;</span></a></div>
@@ -833,7 +830,6 @@ body.zap{animation:zap .6s steps(2) 1}
 <section class="sec paper" id="faq">
   <div class="wrap">
     <div class="mascot r slot bob" data-char="bulby" aria-hidden="true"></div>
-    <p class="eyebrow"><span>Section 04</span><span>FAQ</span></p>
     <h2>Questions.</h2>
     <div class="faq2"><div class="fq" role="tablist" aria-label="Questions"><button type="button" role="tab" aria-selected="true" data-a="Scrap Hack is mainly for TinkerHub campus leads and their core teams. You do not have to be in campus leadership though. Students curious about hardware, including beginners from the TinkerSpace community, are welcome.">Who can join?</button><button type="button" role="tab" aria-selected="false" data-a="No. The hardware sessions start from the basics, and your team will have people with different skills.">Do I need hardware experience?</button><button type="button" role="tab" aria-selected="false" data-a="You register individually. Our organising team forms teams of 4 based on where you live. Each team should ideally include someone from an engineering college, so you can get at lab equipment and peer guidance. Students from arts and science colleges are encouraged to join. Teams have been announced and each team has a WhatsApp group.">How are teams formed?</button><button type="button" role="tab" aria-selected="false" data-a="Your venue is the TinkerSpace you applied to, Kochi or Calicut. Registrations are now closed. Kochi runs 18 hours from 2:00 PM, and Calicut runs 12 hours from 6:00 PM.">Which venue should I pick?</button><button type="button" role="tab" aria-selected="false" data-a="Come with a rough one. By Oct 23 your team should have an idea, an inventory of parts, and a list of anything extra you need. A full design or working prototype is not expected. Be ready to change the plan based on what your scrap can actually do.">Do I need a project idea before I arrive?</button><button type="button" role="tab" aria-selected="false" data-a="Look at home, at scrap shops, and in college labs with permission. Do not open mains-powered supplies, CRT devices, microwaves or damaged lithium batteries. The safety orientation is done. Follow what it covered before you start dismantling.">Where do I get scrap, and can I open anything?</button><button type="button" role="tab" aria-selected="false" data-a="Avoid it. Only buy new items for safety, power or basic connectivity. The challenge is building with what you recover.">Can I buy new components?</button><button type="button" role="tab" aria-selected="false" data-a="Swap parts with other teams in your region. Mention it to the organisers early.">What if I cannot find much scrap?</button><button type="button" role="tab" aria-selected="false" data-a="No. The theme is technology with food, agriculture and the environment. It is there for inspiration, not a rule.">Does my project need to follow the theme?</button><button type="button" role="tab" aria-selected="false" data-a="Yes. Keep a Scrap Diary during the preparation phase, then publish your final project documentation after the build.">Do I have to document my work?</button></div><div class="fa" aria-live="polite"><h3 id="faQ"></h3><p id="faA"></p></div></div>
   </div>
@@ -842,7 +838,6 @@ body.zap{animation:zap .6s steps(2) 1}
 <section class="sec dark" id="note">
   <div class="wrap">
     <div class="ncol">
-      <p class="eyebrow"><span>Section 05</span><span>Organiser's note</span></p>
       <h2>A note from<br>the organiser.</h2>
       <div class="notep">
         <p class="nq">&ldquo;Scrap is one of the best sources for working components. What if that discarded pile was the starting line?&rdquo;</p>
