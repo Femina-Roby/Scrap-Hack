@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Scrap Hack Projects</title>
+<meta name="description" content="What the teams built at Scrap Hack 2026, from scrap: the projects, the people who made them, and photos from the build.">
+<meta name="theme-color" content="#14100c">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta property="og:title" content="Scrap Hack Projects">
+<meta property="og:description" content="What the teams built at Scrap Hack 2026, from scrap.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14100c;--bench:#1a1510;--yellow:#ffe500;--rust:#e2491a;--cream:#f3ead6;--mute:#b8ab92;--line:#3a3025;--display:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;--sans:'Instrument Sans',system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--bench);color:var(--cream);font-family:var(--sans);font-size:17px;line-height:1.6;min-height:100svh;display:flex;flex-direction:column}
+a{color:inherit}
+img,video{max-width:100%}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+
+/* header, same as the home and participants pages */
+.hbar{position:sticky;top:0;z-index:60;background:var(--ink);border-bottom:1px solid rgba(255,255,255,.08)}
+.hbar .in{max-width:1160px;margin-inline:auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative}
+.logo{font-family:var(--display);font-size:22px;letter-spacing:-.02em;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{font-weight:400}.logo b{font-weight:700}
+.logo em{font-style:normal;font-family:var(--sans);font-size:11px;font-weight:600;color:var(--yellow);letter-spacing:.14em;border:1px solid rgba(255,229,0,.5);padding:4px 6px 3px;border-radius:3px;line-height:1;white-space:nowrap}
+.hbar nav{display:flex;gap:22px;font-size:14px;font-weight:500;align-items:center}
+.hbar nav a{text-decoration:none;color:#d9cdb4}
+.hbar nav a:hover{color:var(--yellow)}
+.hbar nav a.cta{background:var(--yellow);color:var(--ink);padding:7px 16px;border-radius:8px;font-weight:600;white-space:nowrap}
+.hbar nav a.cta:hover{color:var(--ink);background:#fff56b}
+.lk{display:contents}
+.mtog,.mcta{display:none}
+@media (max-width:900px){
+  .hbar nav{gap:10px}
+  .mtog{display:grid;place-content:center;gap:5px;width:44px;height:44px;margin-right:-10px;padding:0;background:none;border:0;border-radius:8px;cursor:pointer;color:var(--cream)}
+  .mtog i{display:block;width:22px;height:2px;background:currentColor;border-radius:2px;transition:transform .2s,opacity .2s}
+  .hbar.open .mtog i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .hbar.open .mtog i:nth-child(2){opacity:0}
+  .hbar.open .mtog i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .lk{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;max-height:calc(100svh - 60px);overflow-y:auto;background:var(--ink);border-bottom:1px solid rgba(255,255,255,.1);padding:4px 20px 20px}
+  .hbar.open .lk{display:flex}
+  .hbar nav .lk a{display:block;padding:13px 0;border-bottom:1px solid var(--line);font-family:var(--display);font-weight:700;font-variation-settings:"wdth" 85,"opsz" 40;font-size:22px;line-height:1.2;color:var(--cream)}
+}
+@media (max-width:600px){
+  .hbar nav>.cta{display:none}
+  .hbar nav .lk a.mcta{display:block;margin-top:16px;border:0;border-radius:10px;background:var(--yellow);color:var(--ink);text-align:center;font-family:var(--sans);font-size:16px;font-weight:600;padding:13px}
+}
+
+main{flex:1;width:100%;max-width:1160px;margin-inline:auto;padding:64px 20px 80px}
+h1{margin:0;font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 75,"opsz" 96;text-transform:uppercase;font-size:clamp(56px,9vw,128px);line-height:.86;letter-spacing:-.015em}
+h1 .y{color:var(--yellow)}
+.intro{margin:22px 0 0;max-width:40rem;font-size:clamp(18px,1.6vw,21px);color:#e9dfc8}
+
+.proj{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px 48px;align-items:start;padding:56px 0;border-top:1px solid var(--line)}
+.proj:first-of-type{margin-top:56px}
+.proj h2{margin:0;font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 75,"opsz" 96;text-transform:uppercase;font-size:clamp(34px,4vw,54px);line-height:.92;color:var(--yellow);overflow-wrap:anywhere}
+.proj h2 small{display:block;margin-top:8px;font-family:var(--sans);font-weight:600;font-size:15px;text-transform:none;letter-spacing:0;color:var(--mute)}
+.by{margin:16px 0 0;font-size:15.5px;color:var(--mute)}
+.by b{color:var(--cream);font-weight:600}
+.desc p{margin:14px 0 0;color:#e9dfc8}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.links a{display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border:2px solid var(--cream);border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;box-shadow:3px 4px 0 rgba(255,255,255,.18);transition:transform .12s,box-shadow .12s}
+.links a:hover{transform:translate(2px,3px);box-shadow:1px 1px 0 rgba(255,255,255,.18)}
+
+/* photos and clips: one row that scrolls sideways when there are many */
+.media{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.media img,.media video{flex:none;height:clamp(260px,34vw,420px);width:auto;border-radius:10px;border:1px solid var(--line);background:#241d15;scroll-snap-align:start;object-fit:cover}
+.media video{aspect-ratio:9/16}
+
+@media (max-width:899px){
+  main{padding-top:40px}
+  .proj{grid-template-columns:1fr;padding:44px 0}
+  .proj:first-of-type{margin-top:40px}
+  .media{margin-inline:-20px;padding-inline:20px;scroll-padding-inline:20px}
+  .media img,.media video{height:340px}
+}
+
+footer{padding:22px 20px 26px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);max-width:1160px;width:100%;margin-inline:auto;border-top:1px solid var(--line)}
+footer a{color:var(--cream)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hbar">
+  <div class="in">
+    <a class="logo" href="../index.html"><span><b>Tinker</b>Hub</span><em>SCRAP HACK</em></a>
+    <nav aria-label="Pages">
+      <span class="lk" id="navlk"><a href="../participants/index.html">Participants' note</a><a href="#top" style="color:var(--yellow)">Projects</a><a href="../timer/index.html">Timer</a><a href="../challenge/index.html">Challenge</a><a class="mcta" href="../organiser/index.html">Organiser's note</a></span>
+      <a class="cta" href="../organiser/index.html">Organiser's note</a>
+      <button class="mtog" type="button" aria-expanded="false" aria-controls="navlk" aria-label="Menu"><i></i><i></i><i></i></button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <h1>What you<br><span class="y">built.</span></h1>
+  <p class="intro">Every one of these started as something someone threw away. Here is what the teams sent in after Scrap Hack, in their own words.</p>
+
+  <article class="proj" id="power-cut-companion">
+    <div>
+      <h2>Power Cut Companion</h2>
+      <p class="by">Built by <b>Muhammed Shahal N</b>, <b>Muhammed Sinan P</b> and <b>Sreehitha SD</b></p>
+      <div class="desc"><p>A low-cost emergency device that gives you basic lighting and an audible alert when the power goes out.</p></div>
+    </div>
+    <div class="media">
+      <img src="../projects/media/power-1.webp" width="900" height="1200" loading="lazy" alt="Power Cut Companion standing upright on a desk, a red and white lamp body on top of a breadboard with an LCD screen">
+      <img src="../projects/media/power-2.webp" width="900" height="1200" loading="lazy" alt="Close-up of the Power Cut Companion wiring, a breadboard and LCD next to an old telephone">
+      <img src="../projects/media/power-3.webp" width="677" height="1200" loading="lazy" alt="Microcontroller boards, wires and a power strip spread out on the workbench">
+      <img src="../projects/media/power-4.webp" width="900" height="1200" loading="lazy" alt="A team member working on a part at the workbench">
+    </div>
+  </article>
+
+  <article class="proj" id="phantom">
+    <div>
+      <h2>Phantom</h2>
+      <p class="by">Built by <b>Hana B Usman</b>, <b>Aasim Jasim Ajmal</b>, <b>Niveditaa Sunu</b> and <b>Tejaswini B</b></p>
+      <div class="desc"><p>An FPS aim-training game with precision shooting and personalised calibration, played with a physical controller: a Nerf gun the team rebuilt from e-waste so it can play their custom arcade game.</p></div>
+    </div>
+    <div class="media">
+      <img src="../projects/media/phantom-1.webp" width="675" height="1200" loading="lazy" alt="The Phantom team posing together, one of them holding the modified Nerf gun">
+      <img src="../projects/media/phantom-2.webp" width="900" height="1200" loading="lazy" alt="The modified Nerf gun controller held up against a wall">
+      <img src="../projects/media/phantom-3.webp" width="900" height="1200" loading="lazy" alt="The Phantom aim-training game running on a laptop">
+      <video src="../projects/media/phantom-v.mp4" controls muted playsinline preload="metadata" aria-label="Clip of Phantom in action"></video>
+      <img src="../projects/media/phantom-4.webp" width="675" height="1200" loading="lazy" alt="The team at work on their laptop at TinkerSpace">
+    </div>
+  </article>
+
+  <article class="proj" id="smart-greenhouse">
+    <div>
+      <h2>Smart Greenhouse<small>EcoGrow</small></h2>
+      <p class="by">Built by <b>Ranjana Ranjan</b>, <b>Ahishahar AB</b>, <b>Abdul Samad C V</b> and <b>Adhya V R</b></p>
+      <div class="desc">
+        <p>A low-cost smart greenhouse prototype built on an Arduino Uno. A soil-moisture sensor detects dry soil and a mini pump waters the plant in short timed pulses, so no water is wasted. A DHT11 sensor tracks temperature and humidity, and a fan switches on by itself when it gets too hot. An LED and a buzzer warn the grower about heat, dry soil or a sensor fault.</p>
+        <p>Reused parts like the motor, wires and charger cut both the cost and the e-waste, making smart farming affordable for small growers.</p>
+      </div>
+    </div>
+    <div class="media">
+      <img src="../projects/media/greenhouse-1.webp" width="903" height="1200" loading="lazy" alt="The greenhouse prototype: a potted plant in a wooden box covered with plastic sheet, with a water tub and sensors">
+    </div>
+  </article>
+
+  <article class="proj" id="oru-vedikku-moonnu-pakshi">
+    <div>
+      <h2 lang="ml">ഒരു വെടിക്ക് മൂന്ന് പക്ഷി<small>Three birds, one shot</small></h2>
+      <p class="by">Built by <b>Amal S Kumar</b>, <b>Christy Basil Anil</b>, <b>Navaneeth P</b> and <b>Sivakami S</b></p>
+      <div class="desc">
+        <p>Three separate projects, all from scrap: a virtual violin, a motorised clock and a modified torch.</p>
+        <p>The violin uses a potentiometer and a rack-and-pinion mechanism to control the notes, with an Arduino Nano feeding a Python audio system. The clock uses an ESP32 and a stepper motor to drive its original gears, and syncs over NTP to keep accurate time. The torch gets an RGB light module you control over Wi-Fi from an ESP32, alongside a restored Bluetooth speaker.</p>
+        <p>The team says their website is the best way in, with a few surprises along the way.</p>
+      </div>
+      <div class="links">
+        <a href="https://1vedike3pakshi.netlify.app" target="_blank" rel="noopener">Website</a>
+        <a href="https://1vedike3pakshi.netlify.app/story.html" target="_blank" rel="noopener">Documentation</a>
+        <a href="https://1vedike3pakshi.netlify.app/vlogs" target="_blank" rel="noopener">Vlogs</a>
+        <a href="https://1vedike3pakshi.netlify.app/#linksSection" target="_blank" rel="noopener">Repos</a>
+      </div>
+    </div>
+    <div class="media">
+      <img src="../projects/media/pakshi-1.webp" width="900" height="1200" loading="lazy" alt="The modified blue torch, an old clock face and a tangle of wires and boards">
+      <img src="../projects/media/pakshi-2.webp" width="900" height="1200" loading="lazy" alt="The back of the old clock with a stepper motor fitted to its gears">
+      <img src="../projects/media/pakshi-5.webp" width="675" height="1200" loading="lazy" alt="A phone running the ESP32 RGB control app next to the torch glowing purple">
+      <img src="../projects/media/pakshi-4.webp" width="900" height="1200" loading="lazy" alt="The torch and the restored Bluetooth speaker wired up on the bench">
+      <img src="../projects/media/pakshi-3.webp" width="900" height="1200" loading="lazy" alt="The violin's rack-and-pinion mechanism and a speaker on the desk">
+    </div>
+  </article>
+
+  <article class="proj" id="scrap-desktop-bot">
+    <div>
+      <h2>Scrap Desktop Bot</h2>
+      <p class="by">Built by <b>Adarsh V</b>, <b>Liviya Elizabeth Willy</b>, <b>Godly K Mathews</b> and <b>Annu James</b></p>
+      <div class="desc">
+        <p>A desktop bot made from scrap. An OLED screen left over from old projects is driven by an STM32. An old board with an aux port connects a speaker that had sat unused for years, and the body is cardboard.</p>
+        <p>A Meta Llama 3.2 3B model runs locally on a laptop through Ollama, and an ESP32 carries the messages between the laptop and the bot. You type into the terminal, and the bot answers through its speaker.</p>
+      </div>
+    </div>
+    <div class="media">
+      <img src="../projects/media/desktopbot-1.webp" width="900" height="1200" loading="lazy" alt="The cardboard desktop bot with a small OLED face showing two eyes">
+      <video src="../projects/media/desktopbot-v.mp4" controls muted playsinline preload="metadata" aria-label="Clip of the desktop bot working"></video>
+    </div>
+  </article>
+
+  <article class="proj" id="minniya-minni">
+    <div>
+      <h2 lang="ml">മിന്നിയാ മിന്നി<small>Minniya Minni</small></h2>
+      <p class="by">Built by <b>Chandhana Saji</b>, <b>Gowripriya M J</b> and <b>Gibin Binoi</b></p>
+      <div class="desc">
+        <p>A retro snake game built on an ESP32 with an OLED display and a joystick, programmed in the Arduino IDE. Steer the snake, collect food and chase a higher score. A buzzer beeps when you lose.</p>
+        <p>The casing is scrap too: an old laptop charger casing holds the joystick, and an alarm clock casing houses the buzzer. Old scraps, a new game, and a second life for things that might otherwise be thrown away.</p>
+      </div>
+    </div>
+    <div class="media">
+      <img src="../projects/media/minni-1.webp" width="1200" height="904" loading="lazy" alt="Hands playing the snake game on a small OLED screen mounted on a black casing, with wires and parts around it">
+      <video src="../projects/media/minni-v1.mp4" controls muted playsinline preload="metadata" aria-label="Clip of Minniya Minni being played"></video>
+      <video src="../projects/media/minni-v2.mp4" controls muted playsinline preload="metadata" aria-label="Another clip of Minniya Minni"></video>
+    </div>
+  </article>
+</main>
+
+<footer>Scrap Hack 2026 / TinkerHub Foundation / <a href="https://www.instagram.com/tinkerhub" target="_blank" rel="noopener">@tinkerhub</a></footer>
+
+<script>
+(function(){
+ var h=document.querySelector('.hbar'),b=h&&h.querySelector('.mtog');if(!b)return;
+ function set(o){h.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false')}
+ b.addEventListener('click',function(){set(!h.classList.contains('open'))});
+ h.querySelector('.lk').addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
+ document.addEventListener('click',function(e){if(!h.contains(e.target))set(false)});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&h.classList.contains('open')){set(false);b.focus()}});
+})();
+</script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)}</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script>window.si=window.si||function(){(window.siq=window.siq||[]).push(arguments)}</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+</body>
+</html>
