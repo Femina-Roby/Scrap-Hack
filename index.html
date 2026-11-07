@@ -667,6 +667,33 @@ body.zap{animation:zap .6s steps(2) 1}
   .pgl{padding-top:10px}
   #note .credits a{display:inline-block;padding:10px 0}
 }
+/* soundtrack: the playlist from build night. the record spins while the needle is on it; drag the needle off to stop it */
+#soundtrack{overflow-x:hidden;overflow-x:clip;overflow-y:visible;z-index:2}
+/* torn paper edges: the yellow sheet looks laid over the sections either side */
+#soundtrack::before,#soundtrack::after{content:"";position:absolute;left:0;right:0;height:20px;pointer-events:none;background-repeat:repeat-x;background-size:260px 20px}
+#soundtrack::before{top:-19px;background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 20' preserveAspectRatio='none'><polygon fill='%23ffe500' points='0,20 0,8 5,11 10,6 15,12 20,3 25,5 30,5 35,11 40,3 45,8 50,3 55,5 60,12 65,12 70,5 75,8 80,5 85,12 90,3 95,5 100,8 105,3 110,12 115,3 120,8 125,3 130,6 135,9 140,12 145,6 150,5 155,9 160,6 165,5 170,8 175,11 180,5 185,5 190,3 195,8 200,14 205,12 210,11 215,14 220,14 225,11 230,9 235,8 240,6 245,8 250,5 255,9 260,8 260,20'/></svg>");filter:drop-shadow(0 -3px 0 rgba(20,16,12,.18))}
+#soundtrack::after{bottom:-19px;background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 20' preserveAspectRatio='none'><polygon fill='%23ffe500' points='0,0 0,12 5,11 10,15 15,12 20,14 25,12 30,11 35,9 40,6 45,6 50,9 55,8 60,6 65,12 70,17 75,15 80,15 85,9 90,12 95,15 100,14 105,11 110,15 115,14 120,8 125,11 130,14 135,17 140,12 145,17 150,8 155,17 160,12 165,15 170,17 175,8 180,15 185,12 190,15 195,8 200,8 205,15 210,17 215,12 220,17 225,9 230,15 235,15 240,17 245,8 250,14 255,9 260,12 260,0'/></svg>");background-position:-90px 0;filter:drop-shadow(0 4px 0 rgba(0,0,0,.35))}
+.sec.sound{background:var(--yellow);background-color:var(--yellow)!important;color:var(--ink)}
+#soundtrack .lead{color:#3a3226}
+#soundtrack .btn{background:var(--ink);color:var(--yellow);border-color:var(--ink);box-shadow:5px 6px 0 var(--rust)}
+#soundtrack .btn:hover{box-shadow:2px 3px 0 var(--rust)}
+#soundtrack .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:clamp(28px,5vw,80px);align-items:center}
+#soundtrack .lead{max-width:30rem}
+.stk{margin-top:clamp(16px,3vh,32px);border:2px solid var(--ink);border-radius:16px;background:var(--ink);box-shadow:7px 8px 0 var(--rust);overflow:hidden;max-width:560px}
+.stk iframe{display:block;width:100%;height:352px;border:0;border-radius:14px}
+.sgo{margin-top:clamp(16px,3vh,26px)}
+.deck{position:relative;width:min(100%,440px,calc(100svh - 230px));aspect-ratio:1;justify-self:center;touch-action:none}
+.disc{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,var(--paper) 0 2.4%,var(--rust-deep) 2.6% 22%,#120e0b 22.4% 23.6%,transparent 23.8%),repeating-radial-gradient(circle,#181310 0 2px,#221b16 2px 3px,#120e0b 3px 5px);box-shadow:0 0 0 6px #120e0b,14px 18px 0 rgba(20,16,12,.3);will-change:transform}
+.disc svg{position:absolute;inset:0;width:100%;height:100%}
+.disc text{font-family:var(--sans);font-size:3.4px;font-weight:700;letter-spacing:.34em;fill:var(--paper)}
+.sheen{position:absolute;inset:0;border-radius:50%;pointer-events:none;background:conic-gradient(from 20deg,transparent 0 8%,rgba(255,255,255,.12) 13%,transparent 19% 52%,rgba(255,255,255,.07) 58%,transparent 64%)}
+.arm{position:absolute;right:-7%;top:-9%;width:44%;transform-origin:78% 14%;transform:rotate(var(--a,4deg));filter:drop-shadow(6px 8px 0 rgba(20,16,12,.3));cursor:grab;touch-action:none;background:none;border:0;padding:0}
+.arm.ease{transition:transform .9s cubic-bezier(.3,.7,.2,1)}
+.arm:active{cursor:grabbing}
+.arm svg{display:block;width:100%;height:auto;pointer-events:none}
+.arm:focus-visible{outline-offset:-6px}
+.dhint{position:absolute;left:0;right:0;bottom:-34px;margin:0;text-align:center;font-size:13px;color:#5d5444}
+@media (max-width:899px){#soundtrack .wrap{grid-template-columns:minmax(0,1fr)}.deck{order:-1;width:min(62vw,260px);margin-bottom:34px}.stk iframe{height:352px}}
 </style>
 
 <template id="tpl-tosta">
@@ -813,6 +840,24 @@ body.zap{animation:zap .6s steps(2) 1}
 
   </div>
 </section>
+
+<section class="sec sound" id="soundtrack">
+  <div class="wrap">
+    <div>
+      <h2>The night had<br>a soundtrack.</h2>
+      <p class="lead">A lot of people asked what was playing while the teams built through the night. Here&rsquo;s the playlist.</p>
+      <div class="stk"><iframe title="Scrap Hack playlist on Spotify" src="https://open.spotify.com/embed/playlist/2D7vijRYkWD4381WBDQOtH?utm_source=generator&amp;theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+      <div class="sgo"><a class="btn" href="https://open.spotify.com/playlist/2D7vijRYkWD4381WBDQOtH" target="_blank" rel="noopener">Open in Spotify <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+    <div class="deck" id="deck">
+      <div class="disc" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="lbl-ring" d="M50,50 m-17.5,0 a17.5,17.5 0 1,1 35,0 a17.5,17.5 0 1,1 -35,0"/></defs><text><textPath href="#lbl-ring">scrap hack &middot; played all night &middot; </textPath></text></svg></div>
+      <div class="sheen" aria-hidden="true"></div>
+      <button class="arm" type="button" role="switch" aria-checked="true" aria-label="Needle on the record. Lift it to stop the record."><svg viewBox="0 0 120 200" aria-hidden="true"><circle cx="94" cy="28" r="20" fill="#f3ead6" stroke="#14100c" stroke-width="4"/><circle cx="94" cy="28" r="7" fill="#14100c"/><path d="M94 28 L92 140 L64 176" fill="none" stroke="#14100c" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M94 28 L92 140 L64 176" fill="none" stroke="#f3ead6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="44" y="168" width="30" height="20" rx="4" transform="rotate(38 59 178)" fill="#ffe500" stroke="#14100c" stroke-width="4"/></svg></button>
+      <p class="dhint">Drag the needle off to stop the record.</p>
+    </div>
+  </div>
+</section>
+
 
 <section class="sec dark" id="participants">
   <div class="wrap">
@@ -1487,6 +1532,35 @@ body.zap{animation:zap .6s steps(2) 1}
  document.addEventListener('click',function(e){if(!h.contains(e.target))set(false)});
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&h.classList.contains('open')){set(false);b.focus()}});
  addEventListener('resize',function(){if(innerWidth>900)set(false)});
+})();
+</script>
+<script>
+(function(){
+ var d=document.getElementById('deck');if(!d)return;
+ var disc=d.querySelector('.disc'),arm=d.querySelector('.arm'),hint=d.querySelector('.dhint');
+ var ON=4,OFF=-44,LIFT=-14,RPS=33.3/60;
+ var reduce=false;try{reduce=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
+ var playing=true,seen=false,ang=0,spd=0,last=0,raf=0,drag=null,a=ON;
+ function setArm(v,ease){a=v;arm.classList.toggle('ease',!!ease);arm.style.setProperty('--a',v+'deg')}
+ function setPlay(p){playing=p;arm.setAttribute('aria-checked',p);arm.setAttribute('aria-label',p?'Needle on the record. Lift it to stop the record.':'Needle lifted. Put it back to play the record.');hint.textContent=p?'Drag the needle off to stop the record.':'Put the needle back to play.';setArm(p?ON:OFF,true);go()}
+ function tick(t){var dt=last?Math.min(.05,(t-last)/1000):0;last=t;
+  var target=playing&&seen&&!drag?RPS:0;spd+=(target-spd)*Math.min(1,dt*(target?2.2:1.4));
+  if(Math.abs(spd)<.002&&!target){spd=0}
+  ang=(ang+spd*360*dt)%360;disc.style.transform='rotate('+ang+'deg)';
+  raf=(spd||target)?requestAnimationFrame(tick):0;if(!raf)last=0}
+ function go(){if(!reduce&&!raf)raf=requestAnimationFrame(tick)}
+ /* angle of the pointer around the needle's pivot */
+ function piv(){var b=d.getBoundingClientRect(),w=arm.offsetWidth,h=arm.offsetHeight;
+  return {x:b.right+.07*b.width-w+.78*w,y:b.top-.09*b.height+.14*h}}
+ function deg(e,p){return Math.atan2(e.clientY-p.y,e.clientX-p.x)*180/Math.PI}
+ arm.addEventListener('pointerdown',function(e){e.preventDefault();var p=piv();drag={p:p,s:deg(e,p),a0:a,moved:false};try{arm.setPointerCapture(e.pointerId)}catch(_){}setArm(a,false)});
+ arm.addEventListener('pointermove',function(e){if(!drag)return;var v=deg(e,drag.p)-drag.s;if(v>180)v-=360;if(v<-180)v+=360;if(Math.abs(v)>2)drag.moved=true;setArm(Math.max(OFF-6,Math.min(ON+4,drag.a0+v)),false)});
+ function up(){if(!drag)return;var moved=drag.moved;drag=null;setPlay(moved?a>LIFT:!playing)}
+ arm.addEventListener('pointerup',up);arm.addEventListener('pointercancel',up);
+ /* keyboard: Enter or Space toggles (pointer taps are handled on pointerup) */
+ arm.addEventListener('click',function(e){if(e.detail===0)setPlay(!playing)});
+ setArm(ON,false);
+ if('IntersectionObserver' in window)new IntersectionObserver(function(es){seen=es[0].isIntersecting;go()},{threshold:.3}).observe(d);else{seen=true;go()}
 })();
 </script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)}</script>
